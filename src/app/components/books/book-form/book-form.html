@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>{{ mode === 'add' ? 'Add New Book' : 'Edit Book' }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="bookForm">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="Book title" />
+            @if (bookForm.get('title')?.hasError('required')) {
+            <mat-error>Title is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Author ID</mat-label>
+            <input matInput type="number" formControlName="authorid" placeholder="Author ID" />
+            @if (bookForm.get('authorid')?.hasError('required')) {
+            <mat-error>Author ID is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Author</mat-label>
+            <input matInput formControlName="author" placeholder="Author name" />
+            @if (bookForm.get('author')?.hasError('required')) {
+            <mat-error>Author is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>ISBN</mat-label>
+            <input matInput formControlName="isbn" placeholder="ISBN number" />
+            @if (bookForm.get('isbn')?.hasError('required')) {
+            <mat-error>ISBN is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Category</mat-label>
+            <input matInput formControlName="category" placeholder="e.g., Fiction, Science" />
+            @if (bookForm.get('category')?.hasError('required')) {
+            <mat-error>Category is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Quantity</mat-label>
+            <input matInput type="number" formControlName="quantity" placeholder="Total copies" />
+            @if (bookForm.get('quantity')?.hasError('required')) {
+            <mat-error>Quantity is required</mat-error>
+            } @if (bookForm.get('quantity')?.hasError('min')) {
+            <mat-error>Quantity must be at least 0</mat-error>
+            }
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="bookForm.invalid || loading()">
+        {{ mode === 'add' ? 'Add Book' : 'Update Book' }}
+    </button>
+</mat-dialog-actions>

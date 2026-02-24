@@ -1,1 +1,246 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Dark Theme System */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+    /* Premium Slate/Midnight Palette */
+    --bg-deep: #0f172a;
+    --card-bg: #1e293b;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
+
+    /* Typography Colors - Greyish White for Better Readability */
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Accent Gradient */
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --primary-blue: #6366f1;
+
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    line-height: 1.6;
+    height: 100vh;
+}
+
+/* Material Global Overrides */
+.mat-mdc-card {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow) !important;
+    color: var(--text-primary) !important;
+    transition: var(--transition) !important;
+}
+
+.mat-mdc-card-title {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+}
+
+.mat-mdc-card-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+/* Subtle Hover Effect */
+.mat-mdc-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Form Fields & Placeholders - High Visibility */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+    border-color: var(--glass-border) !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline__trailing {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Make labels/placeholders visible */
+.mat-mdc-form-field-label,
+.mdc-floating-label,
+.mat-mdc-select-placeholder {
+    color: var(--text-secondary) !important;
+    font-weight: 400 !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-label {
+    color: var(--primary-blue) !important;
+}
+
+input.mat-mdc-input-element {
+    color: var(--text-primary) !important;
+    font-size: 15px !important;
+}
+
+/* Standardize input box height */
+.mat-mdc-form-field-infix {
+    min-height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Buttons */
+.mat-mdc-raised-button.mat-primary {
+    background: var(--accent-gradient) !important;
+    border-radius: var(--radius-md) !important;
+    height: 56px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Paginator Fix - Remove White Background and Dark Text */
+.mat-mdc-paginator {
+    background: transparent !important;
+    color: var(--text-secondary) !important;
+}
+
+.mat-mdc-paginator-container {
+    padding: 0 24px !important;
+}
+
+.mat-mdc-paginator .mat-mdc-select-value-text,
+.mat-mdc-paginator .mat-mdc-paginator-range-label {
+    color: var(--text-secondary) !important;
+}
+
+/* Global Table Styles */
+.mat-mdc-table {
+    background: transparent !important;
+}
+
+th.mat-mdc-header-cell {
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: var(--text-secondary) !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 16px 24px !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+}
+
+td.mat-mdc-cell {
+    padding: 20px 24px !important;
+    color: var(--text-primary) !important;
+    font-size: 14px !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+}
+
+/* Sidebar & Navbar Visibility - High Specificity */
+.navbar,
+.navbar * {
+    color: var(--text-primary) !important;
+}
+
+.logo,
+.logo-link,
+.logo-link * {
+    color: var(--text-primary) !important;
+}
+
+.user-menu-btn,
+.user-menu-btn * {
+    color: var(--text-primary) !important;
+}
+
+/* Sidebar Specificity Fix */
+.sidebar a.mat-mdc-list-item,
+.sidebar a.mat-mdc-list-item .mdc-list-item__primary-text,
+.sidebar a.mat-mdc-list-item mat-icon {
+    color: var(--text-secondary) !important;
+}
+
+.sidebar a.mat-mdc-list-item:hover:not(.active),
+.sidebar a.mat-mdc-list-item:hover:not(.active) .mdc-list-item__primary-text,
+.sidebar a.mat-mdc-list-item:hover:not(.active) mat-icon {
+    color: var(--text-primary) !important;
+}
+
+.sidebar a.active.mat-mdc-list-item,
+.sidebar a.active.mat-mdc-list-item .mdc-list-item__primary-text,
+.sidebar a.active.mat-mdc-list-item mat-icon {
+    color: #818cf8 !important;
+    font-weight: 600 !important;
+}
+
+.logout-item,
+.logout-item * {
+    color: #f87171 !important;
+}
+
+/* Paginator Fix */
+.mat-mdc-paginator,
+.mat-mdc-paginator * {
+    color: var(--text-secondary) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Global Badge Styles */
+.status-badge {
+    padding: 6px 14px !important;
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    display: inline-block !important;
+}
+
+.status-badge.issued {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+}
+
+.status-badge.returned {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+}
+
+.fine-badge.has-fine {
+    color: #f87171 !important;
+    font-weight: 700 !important;
+}
+
+.fine-text {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

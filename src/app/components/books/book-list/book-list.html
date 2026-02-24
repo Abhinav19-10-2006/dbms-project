@@ -1,0 +1,95 @@
+<div class="book-list-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Books Library</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="toolbar">
+                <mat-form-field appearance="outline" class="search-field">
+                    <mat-label>Search books</mat-label>
+                    <input matInput [(ngModel)]="searchQuery" (keyup.enter)="onSearch()"
+                        placeholder="Search by title, author, or category" />
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+
+                @if (authService.isAdmin()) {
+                <button mat-raised-button color="primary" (click)="openAddDialog()">
+                    <mat-icon>add</mat-icon>
+                    Add Book
+                </button>
+                }
+            </div>
+
+            <div class="table-container">
+                <table mat-table [dataSource]="books()" class="books-table">
+                    <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef>Title</th>
+                        <td mat-cell *matCellDef="let book">{{ book.title }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="author">
+                        <th mat-header-cell *matHeaderCellDef>Author</th>
+                        <td mat-cell *matCellDef="let book">{{ book.author }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="isbn">
+                        <th mat-header-cell *matHeaderCellDef>ISBN</th>
+                        <td mat-cell *matCellDef="let book">{{ book.isbn }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="category">
+                        <th mat-header-cell *matHeaderCellDef>Category</th>
+                        <td mat-cell *matCellDef="let book">{{ book.category }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef>Total</th>
+                        <td mat-cell *matCellDef="let book">{{ book.quantity }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="available_quantity">
+                        <th mat-header-cell *matHeaderCellDef>Available</th>
+                        <td mat-cell *matCellDef="let book">
+                            <span [class.low-stock]="book.available_quantity === 0">
+                                {{ book.available_quantity }}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>Actions</th>
+                        <td mat-cell *matCellDef="let book">
+                            @if (authService.isAdmin()) {
+                            <button mat-icon-button color="primary" (click)="openEditDialog(book)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="deleteBook(book)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            } @else {
+                            @if (isBookIssued(book.id)) {
+                            <button mat-flat-button color="warn" (click)="returnBook(book)" [disabled]="loading()">
+                                <mat-icon>assignment_return</mat-icon>
+                                Return
+                            </button>
+                            } @else {
+                            <button mat-flat-button color="primary" (click)="rentBook(book)"
+                                [disabled]="book.available_quantity === 0 || loading()">
+                                <mat-icon>shopping_cart</mat-icon>
+                                Rent
+                            </button>
+                            }
+                            }
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+
+            <mat-paginator [length]="totalBooks" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50]"
+                (page)="onPageChange($event)"></mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,39 @@
+.user-list-container {
+    padding: 0;
+}
+
+.user-card {
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.user-card mat-card-header {
+    padding: 32px 32px 0 32px !important;
+    margin-bottom: 24px;
+}
+
+.user-table {
+    width: 100%;
+    background: transparent !important;
+}
+
+.role-badge {
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+}
+
+.role-badge.admin {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+}
+
+.delete-btn {
+    color: #f87171 !important;
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-radius: 10px !important;
+}

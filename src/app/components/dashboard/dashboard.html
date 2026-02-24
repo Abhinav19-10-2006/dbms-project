@@ -1,0 +1,133 @@
+<div class="dashboard-container">
+    <div class="title-bar">
+        <h1 class="page-title">Management Overview</h1>
+        <button mat-icon-button (click)="refreshData()" [disabled]="loading()" color="primary">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+
+    @if (loading()) {
+    <div class="loading-container">
+        <mat-spinner></mat-spinner>
+    </div>
+    } @else {
+    <div class="stats-grid">
+        @if (isAdmin()) {
+        <mat-card class="stat-card">
+            <mat-card-content>
+                <div class="stat-info">
+                    <h2>{{ totalBooks() }}</h2>
+                    <p>Total Book Types</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        }
+
+        <mat-card class="stat-card">
+            <mat-card-content>
+                <div class="stat-info">
+                    <h2>{{ issuedBooks() }}</h2>
+                    <p>{{ isAdmin() ? 'Total Issued Books' : 'My Issued Books' }}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <mat-card-content>
+                <div class="stat-info">
+                    <h2>{{ availableBooks() }}</h2>
+                    <p>Available in Library</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card fine-card">
+            <mat-card-content>
+                <div class="stat-info">
+                    <h2 class="fine-text">₹{{ totalFines() }}</h2>
+                    <p>Total Fines</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    @if (!isAdmin() && dueSoonBooks().length > 0) {
+    <div class="reminders-section">
+        <h3 class="section-title">Critical Reminders</h3>
+        <div class="reminders-grid">
+            @for (book of dueSoonBooks(); track book.id) {
+            <mat-card class="reminder-card" [class.overdue]="book.fine_amount && book.fine_amount > 0">
+                <mat-card-content>
+                    <mat-icon color="warn">warning</mat-icon>
+                    <div class="reminder-info">
+                        <strong>{{ book.book_title }}</strong>
+                        <p>{{ book.fine_amount ? 'OVERDUE: ₹' + book.fine_amount : 'Due: ' + (book.due_date | date) }}
+                        </p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            }
+        </div>
+    </div>
+    }
+
+    <mat-card class="transactions-card">
+        <mat-card-header>
+            <mat-card-title>{{ isAdmin() ? 'Recent Transactions' : 'My Recent Transactions' }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            @if (recentTransactions().length === 0) {
+            <p class="no-data">No recent transactions</p>
+            } @else {
+            <table mat-table [dataSource]="recentTransactions()" class="transactions-table">
+                <ng-container matColumnDef="book_title">
+                    <th mat-header-cell *matHeaderCellDef>Book</th>
+                    <td mat-cell *matCellDef="let transaction">{{ transaction.book_title }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="user_name">
+                    <th mat-header-cell *matHeaderCellDef>User</th>
+                    <td mat-cell *matCellDef="let transaction">{{ transaction.user_name }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="issue_date">
+                    <th mat-header-cell *matHeaderCellDef>Issue Date</th>
+                    <td mat-cell *matCellDef="let transaction">
+                        {{ transaction.issue_date | date : 'short' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="due_date">
+                    <th mat-header-cell *matHeaderCellDef>Due Date</th>
+                    <td mat-cell *matCellDef="let transaction">
+                        {{ transaction.due_date | date : 'short' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Status</th>
+                    <td mat-cell *matCellDef="let transaction">
+                        <span class="status-badge" [class.issued]="transaction.status === 'ISSUED'"
+                            [class.returned]="transaction.status === 'RETURNED'">
+                            {{ transaction.status }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fine_amount">
+                    <th mat-header-cell *matHeaderCellDef>Fine</th>
+                    <td mat-cell *matCellDef="let transaction">
+                        <span class="fine-badge" [class.has-fine]="transaction.fine_amount > 0">
+                            ₹{{ transaction.fine_amount || 0 }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            }
+        </mat-card-content>
+    </mat-card>
+    }
+</div>

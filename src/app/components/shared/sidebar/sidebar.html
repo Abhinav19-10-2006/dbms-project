@@ -1,0 +1,35 @@
+<mat-nav-list class="sidebar">
+    <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <span matListItemTitle>Dashboard</span>
+    </a>
+
+    <a mat-list-item routerLink="/books" routerLinkActive="active">
+        <span matListItemTitle>Books</span>
+    </a>
+
+    <a mat-list-item routerLink="/transactions/history" routerLinkActive="active">
+        <span matListItemTitle>{{ authService.isAdmin() ? 'Issued Books' : 'My History' }}</span>
+    </a>
+
+    @if (authService.isAdmin()) {
+    <a mat-list-item routerLink="/users" routerLinkActive="active">
+        <span matListItemTitle>Users</span>
+    </a>
+    }
+
+    <div class="simulation-section">
+        <p class="section-label">System Simulation</p>
+        <mat-form-field appearance="outline" class="sim-date-picker">
+            <mat-label>Current System Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="simulatedDate" (dateChange)="onDateChange($event)">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div class="spacer"></div>
+
+    <a mat-list-item (click)="logout()" class="logout-item">
+        <span matListItemTitle>Logout</span>
+    </a>
+</mat-nav-list>

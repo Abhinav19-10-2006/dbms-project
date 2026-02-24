@@ -1,0 +1,38 @@
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-primary) !important;
+    padding: 0 32px !important;
+    height: 64px !important;
+}
+
+.logo {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.user-menu-btn {
+    border-radius: 12px !important;
+    font-weight: 500 !important;
+    padding: 0 16px !important;
+}
+
+.user-menu-btn mat-icon {
+    margin-right: 8px;
+}

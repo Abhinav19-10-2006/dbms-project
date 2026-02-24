@@ -1,0 +1,81 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+}
+
+.login-card {
+  width: 450px;
+  padding: 40px !important;
+}
+
+.login-card mat-card-header {
+  margin-bottom: 32px;
+  display: block;
+}
+
+.login-card mat-card-title {
+  font-size: 32px !important;
+  text-align: center;
+}
+
+.login-card mat-card-subtitle {
+  text-align: center;
+  margin-bottom: 24px !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.login-button {
+  margin-top: 16px !important;
+  width: 100% !important;
+  height: 56px !important;
+  font-size: 16px !important;
+  background: var(--accent-gradient) !important;
+  color: white !important;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 32px;
+  color: var(--text-secondary);
+}
+
+.register-link a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.mode-switch {
+  margin-top: 16px;
+}
+
+.demo-credentials {
+  margin-top: 40px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+}
+
+.demo-credentials strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}

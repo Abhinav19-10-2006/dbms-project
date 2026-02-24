@@ -1,0 +1,61 @@
+.return-container {
+    padding: 0;
+}
+
+.return-card {
+    border-radius: 24px !important;
+    background: white !important;
+    padding: 0 !important;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.return-card mat-card-header {
+    padding: 32px 32px 0 32px !important;
+    margin-bottom: 24px;
+}
+
+.return-card mat-card-title {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #1a202c;
+    letter-spacing: -0.5px;
+}
+
+.return-table {
+    width: 100%;
+}
+
+.mat-mdc-header-cell {
+    background: #f7fafc !important;
+    color: #4a5568 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 16px 32px !important;
+}
+
+.mat-mdc-cell {
+    padding: 20px 32px !important;
+    color: #2d3748 !important;
+    font-size: 15px !important;
+}
+
+.return-btn {
+    border-radius: 10px !important;
+    padding: 0 20px !important;
+    height: 38px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+}
+
+.no-data {
+    text-align: center;
+    padding: 80px 32px;
+    color: #a0aec0;
+    font-size: 16px;
+    font-weight: 500;
+}

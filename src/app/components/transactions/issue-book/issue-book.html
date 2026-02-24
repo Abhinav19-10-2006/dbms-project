@@ -1,0 +1,28 @@
+<div class="issue-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Issue a Book</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Select Book</mat-label>
+                    <mat-select formControlName="book_id">
+                        @for (book of availableBooks(); track book.id) {
+                        <mat-option [value]="book.id">
+                            {{ book.title }} by {{ book.author }} ({{ book.available_quantity }} available)
+                        </mat-option>
+                        }
+                    </mat-select>
+                    @if (issueForm.get('book_id')?.hasError('required')) {
+                    <mat-error>Please select a book</mat-error>
+                    }
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="issueForm.invalid || loading()">
+                    Issue Book
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

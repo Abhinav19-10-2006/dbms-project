@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="navbar">
+    <a routerLink="/login" class="logo-link">
+        <span class="logo">Library System</span>
+    </a>
+    <span class="spacer"></span>
+    @if (authService.currentUser(); as user) {
+    <button mat-button [matMenuTriggerFor]="menu">
+        {{ user.name }}
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item disabled>
+            <span>{{ user.role }}</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <span>Logout</span>
+        </button>
+    </mat-menu>
+    }
+</mat-toolbar>

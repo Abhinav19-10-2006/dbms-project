@@ -1,0 +1,19 @@
+.history-container {
+    padding: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.history-table {
+    width: 100%;
+    background: transparent !important;
+}
+
+.fine-badge {
+    color: var(--text-secondary);
+}
