@@ -250,20 +250,6 @@ libraryproject/
 
 ---
 
-## Recent Bug Fix
-
-**Issue**: Dashboard recent transactions section was empty despite transactions existing in history.
-
-**Root Cause**: `displayedColumns` was defined as a computed signal, but Angular Material table directives don't support signals—they expect plain arrays.
-
-**Solution**: Converted `displayedColumns` from `computed()` signal to a getter method `getDisplayedColumns()` returning `string[]`.
-
-**Files Modified**:
-- `src/app/components/dashboard/dashboard.ts` — Changed from signal to getter
-- `src/app/components/dashboard/dashboard.html` — Updated template bindings
-
----
-
 ## Setup & Installation
 
 ### Frontend Setup
