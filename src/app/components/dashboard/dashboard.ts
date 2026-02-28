@@ -32,14 +32,14 @@ export class Dashboard implements OnInit {
 
   isAdmin = computed(() => this.authService.isAdmin());
 
-  displayedColumns = computed(() => {
+  getDisplayedColumns(): string[] {
     const columns = ['book_title'];
     if (this.isAdmin()) {
       columns.push('user_name');
     }
     columns.push('issue_date', 'due_date', 'status', 'fine_amount');
     return columns;
-  });
+  }
 
   constructor(
     private bookService: BookService,
